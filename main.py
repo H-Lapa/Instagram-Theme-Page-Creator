@@ -2,15 +2,16 @@ import time
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import func
+import json
 
 #setting up and loading the browser
-driver = webdriver.Firefox(executable_path=r'C:\Users\tuxo9\Downloads\geckodriver\geckodriver.exe')
-driver.get("https://www.instagram.com/")
+#driver = webdriver.Firefox(executable_path=r'C:\Users\tuxo9\Downloads\geckodriver\geckodriver.exe')
+#driver.get("https://www.instagram.com/")
 
 #log in
-username = "enter username"
-password = "enter password"
-func.login(username, password, driver)
+#username = "enter username"
+#password = "enter password"
+#func.login(username, password, driver)
 
 #get names of profiles from CSV file, each having a corresponding date
 # if date empty add, most recent post date
@@ -21,4 +22,4 @@ func.login(username, password, driver)
 # else check all the posts until you reach the post with the same date
 #download and upload all the new posts
 
-
+func.createFolders(func.setUp())
