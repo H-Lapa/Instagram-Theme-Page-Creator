@@ -4,6 +4,8 @@ from selenium.webdriver.common.keys import Keys
 import random
 import os
 import json
+import urllib
+import urllib.request
 
 def login (username, password, driver):
     #accept cookie button has been pressed
@@ -35,3 +37,6 @@ def createFolders (accounts):
             print("Directory '%s' created successfully" % directory)
         except OSError as error:
             print("Directory '%s' can not be created" % directory)
+
+def download (src, name, date):
+    urllib.request.urlretrieve(src, "Images/" + name +"/" + date + ".png")
