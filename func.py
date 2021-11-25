@@ -38,5 +38,21 @@ def createFolders (accounts):
         except OSError as error:
             print("Directory '%s' can not be created" % directory)
 
+
 def download (src, name, date):
     urllib.request.urlretrieve(src, "Images/" + name +"/" + date + ".png")
+
+def append_accounts(new_data, filename='Accounts.json'):
+    with open(filename,'r+') as file:
+          # First we load existing data into a dict.
+        file_data = json.load(file)
+        # Join new_data with file_data inside accounts
+        file_data["accounts"].append(new_data)
+        # Sets file's current position at offset.
+        file.seek(0)
+        # convert back to json.
+        json.dump(file_data, file, indent = 4)
+
+
+new = {"Username": "sou.ohugo", "LDP": 'null', "LQP": 'null'}
+append_accounts(new)
