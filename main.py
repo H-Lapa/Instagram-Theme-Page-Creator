@@ -1,8 +1,9 @@
-import time
-from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
-import func
-import json
+# import time
+# from selenium import webdriver
+# from selenium.webdriver.common.keys import Keys
+# import func
+# import json
+#import datetime
 
 #setting up and loading the browser
 #driver = webdriver.Firefox(executable_path=r'C:\Users\tuxo9\Downloads\geckodriver\geckodriver.exe')
@@ -22,5 +23,27 @@ import json
 # else check all the posts until you reach the post with the same date
 #download and upload all the new posts
 
-func.createFolders(func.setUp())
+#func.createFolders(func.setUp())
+
+
+class Account:
+    def __init__(self, username):
+        self.username = username
+        self.posts_array = []
+
+class Posts:
+    def __init__(self, link, date):
+        self.link = link
+        self.date = date # can use datetime liabry
+
+    def append (self, account, post):
+
+
+    def get_posts (self):
+
+class Menu:
+    def __init__(self):
+        self.text = "-------------------- \n     1.Execute \n   2.Add Accounts \n    3.Exit code \n     4.Resume"
+
+
 
