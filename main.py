@@ -31,19 +31,30 @@ class Account:
         self.username = username
         self.posts_array = []
 
+    def get_posts (self):
+        return self.posts_array
+
+    def append (self, post):
+        self.posts_array.append(post)
+
 class Posts:
     def __init__(self, link, date):
         self.link = link
         self.date = date # can use datetime liabry
 
-    def append (self, account, post):
 
-
-    def get_posts (self):
 
 class Menu:
     def __init__(self):
         self.text = "-------------------- \n     1.Execute \n   2.Add Accounts \n    3.Exit code \n     4.Resume"
+
+
+class simulation:
+    def __init__(self):
+
+
+
+
 
 
 
