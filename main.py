@@ -29,6 +29,11 @@ class Myaccount:
         self.username = username
         self.password = password
 
+    def login(self):
+        pass
+
+    def uploadPost(self):
+        pass
 
 
 class Account:
@@ -42,10 +47,14 @@ class Account:
     def append (self, post):
         self.posts_array.append(post)
 
+    def create_folder(self):
+ 
+
 class Posts:
     def __init__(self, link, date):
         self.link = link
         self.date = date # can use datetime liabry
+        self.caption = ""
 
 
 class Menu:
@@ -60,6 +69,8 @@ class Simulation:
 
     def run (self):
         pass
+
+    
 
 
 
