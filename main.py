@@ -1,29 +1,13 @@
-# import time
-# from selenium import webdriver
-# from selenium.webdriver.common.keys import Keys
-# import func
-# import json
-#import datetime
+import time
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+import datetime
+import random
+import os
+import json
+import urllib
+import urllib.request
 
-#setting up and loading the browser
-#driver = webdriver.Firefox(executable_path=r'C:\Users\tuxo9\Downloads\geckodriver\geckodriver.exe')
-#driver.get("https://www.instagram.com/")
-
-#log in
-#username = "enter username"
-#password = "enter password"
-#func.login(username, password, driver)
-
-#get names of profiles from CSV file, each having a corresponding date
-# if date empty add, most recent post date
-#downlaod all the images and upload them
-# else if there is a date
-# check the most recent date
-# if the date is equal, move onto the next profile
-# else check all the posts until you reach the post with the same date
-#download and upload all the new posts
-
-#func.createFolders(func.setUp())
 class Myaccount:
     def __init__(self, username, password):
         self.username = username
@@ -84,7 +68,6 @@ class Simulation:
 
     def run (self):
         pass
-
 
 
 
