@@ -1,10 +1,14 @@
-import time
+# selenium imports
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
+#time related imports
+import time
 import datetime
+#math import
 import random
+#file control import
 import os
-import json
+#request imports
 import urllib
 import urllib.request
 
@@ -40,6 +44,15 @@ class Account:
             print("Directory '%s' created successfully" % directory)
         except OSError as error:
             print("Directory '%s' can not be created" % directory)
+
+    def check_validity(self):
+        response = requests.get(self.link)
+        if response.status_code == 404 :
+            #If the account doesn't exist
+            #delete name from csv 
+            # move to invalid csv
+            pass
+
  
 
 class Post:
@@ -68,6 +81,8 @@ class Simulation:
         pass
 
     def run (self):
+        #get names from csv, put then into an accounts array
+
         pass
 
 
