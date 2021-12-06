@@ -70,9 +70,12 @@ class Simulation:
         pass
 
 
+def Main():
+    execute = Simulation()
+    execute.run()
 
-
-
+if __name__ == "__main__": 
+    Main()
 
 
 
