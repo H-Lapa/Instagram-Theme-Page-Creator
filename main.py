@@ -11,6 +11,8 @@ import os
 #request imports
 import urllib
 import urllib.request
+# to be abe to read csv files
+import csv
 
 class Myaccount:
     def __init__(self, username, password):
@@ -82,9 +84,25 @@ class Simulation:
 
     def run (self):
         #get names from csv, put then into an accounts array
+        self.get_usernames()
 
-        pass
+    def get_usernames (self):
+        """ Produces arary with Usernames from CSV"""
 
+        #Opens the file
+        file = open('Usernames.csv')
+        type(file)
+
+        #reads items from rows
+        csvreader = csv.reader(file)
+        rows = []
+        for row in csvreader:
+                rows.append(row)
+        rows
+
+        #closes the files
+        file.close()
+        print(rows)
 
 def Main():
     execute = Simulation()
