@@ -23,6 +23,7 @@ from Menu import Menu
 class Simulation:
     def __init__(self):
         """Run Insta Account Simulation"""
+        self.SimTitle = datetime.datetime.now().strftime("%d-%b-%Y-%H%M")
         pass
 
     def run (self):
@@ -49,14 +50,12 @@ class Simulation:
 
     def folder_structure(self, usernameArray):
 
-        #creates the parent file for the simulation 
-        folder_title = datetime.datetime.now()
-        folder_title_str = folder_title.strftime("%d-%b-%Y-%H%M")
-        os.makedirs(folder_title_str, exist_ok = True)
+        #creates the parent file for the simulation using the name
+        os.makedirs(self.SimTitle, exist_ok = True)
 
         #creates account files
         for username in usernameArray:
-            path = os.path.join(folder_title_str, str(username[0]))
+            path = os.path.join(self.SimTitle, str(username[0]))
             os.makedirs(path, exist_ok = True)
 
 
