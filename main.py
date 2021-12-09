@@ -27,9 +27,13 @@ class Simulation:
         pass
 
     def run (self):
-        #get names from csv, put then into an accounts array
-        array =self.get_usernames()
-        self.folder_structure(array)
+        #check the validity
+        #if invalid, place name in invalid csv
+        #if account is valid, put names in working csv
+        #get names from csv
+        #make them into accounts 
+        #append those account into an array 
+        
 
     def get_usernames (self):
         """ Produces arary with Usernames from CSV"""

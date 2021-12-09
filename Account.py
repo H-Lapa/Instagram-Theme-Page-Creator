@@ -1,3 +1,5 @@
+import requests
+
 class Account:
     def __init__(self, username):
         self.username = username
@@ -25,4 +27,6 @@ class Account:
             #If the account doesn't exist
             #delete name from csv 
             # move to invalid csv
-            pass
+            return False
+
+        return True
