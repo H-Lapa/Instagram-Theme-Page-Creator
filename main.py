@@ -22,6 +22,9 @@ class Myaccount:
     def login(self):
         pass
 
+    def logout(self):
+        pass
+
     def uploadPost(self):
         pass
 
