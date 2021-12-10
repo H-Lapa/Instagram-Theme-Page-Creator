@@ -33,6 +33,7 @@ class Simulation:
         #get names from csv
         #make them into accounts 
         #append those account into an array 
+        pass
         
 
     def get_usernames (self):
@@ -61,6 +62,19 @@ class Simulation:
         for username in usernameArray:
             path = os.path.join(self.SimTitle, str(username[0]))
             os.makedirs(path, exist_ok = True)
+
+    def create_account_array(self, usernames):
+        account_array = []
+        for username in usernames:
+            user = Account(username)
+            if user.check_validity():
+                account_array.append(user)
+            else:
+                
+        return account_array
+
+
+
 
 
 

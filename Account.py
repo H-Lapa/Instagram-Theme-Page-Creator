@@ -24,9 +24,12 @@ class Account:
     def check_validity(self):
         response = requests.get(self.link)
         if response.status_code == 404 :
-            #If the account doesn't exist
-            #delete name from csv 
-            # move to invalid csv
             return False
-
         return True
+
+    def add_name_to_file(self):
+        with open('first.csv', 'rb') as inp, open('first_edit.csv', 'wb') as out:
+        writer = csv.writer(out)
+        for row in csv.reader(inp):
+            if row[2] != "0":
+                writer.writerow(row)
