@@ -11,6 +11,7 @@ import os
 #request imports
 import urllib
 import urllib.request
+import requests
 # to be abe to read csv files
 import csv
 #importing classes from other python folders
@@ -33,7 +34,13 @@ class Simulation:
         #get names from csv
         #make them into accounts 
         #append those account into an array 
-        pass
+
+        list = self.get_usernames()
+        driver = webdriver.Firefox(executable_path=r'C:\Users\tuxo9\Downloads\geckodriver\geckodriver.exe')
+        acc = Myaccount("username", "Password")
+        acc.login(driver)
+        aarray = self.create_account_array(list, driver)
+        
         
 
     def get_usernames (self):
@@ -63,18 +70,29 @@ class Simulation:
             path = os.path.join(self.SimTitle, str(username[0]))
             os.makedirs(path, exist_ok = True)
 
-    def create_account_array(self, usernames):
+    def create_account_array(self, usernames, driver):
         account_array = []
-        for username in usernames:
-            user = Account(username)
-            if user.check_validity():
+        for x in range(3):
+            user = Account(usernames[x][0])
+            print(usernames[x][0])
+            if user.check_validity(driver) == True:
+                print("True")
                 account_array.append(user)
             else:
+                print("False")
+                lines = list()
+                with open('Usernames.csv', 'r') as readFile:
+                    reader = csv.reader(readFile)
+                    for row in reader:
+                        lines.append(row)
+                        for field in row:
+                            if field == usernames[x][0]:
+                                lines.remove(row)
+                with open('Usernames.csv', 'w') as writeFile:
+                    writer = csv.writer(writeFile)
+                    writer.writerows(lines)
                 
         return account_array
-
-
-
 
 
 

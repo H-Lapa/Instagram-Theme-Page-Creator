@@ -1,4 +1,7 @@
 import requests
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+import time
 
 class Account:
     def __init__(self, username):
@@ -21,15 +24,20 @@ class Account:
         except OSError as error:
             print("Directory '%s' can not be created" % directory)
 
-    def check_validity(self):
-        response = requests.get(self.link)
-        if response.status_code == 404 :
+    def check_validity(self, driver):
+        try:
+            driver.get(self.link) 
+            variable = driver.find_element_by_xpath("/html/body/div[1]/div/div/section/main/div/div/h2")
+            time.sleep(10)
             return False
-        return True
+        except:
+            return True
 
-    def add_name_to_file(self):
-        with open('first.csv', 'rb') as inp, open('first_edit.csv', 'wb') as out:
-        writer = csv.writer(out)
-        for row in csv.reader(inp):
-            if row[2] != "0":
-                writer.writerow(row)
+    def add_name_to_file(self, filename):
+        # with open(filename, 'rb') as inp, open('first_edit.csv', 'wb') as out:
+        # writer = csv.writer(out)
+        # for row in csv.reader(inp):
+        #     if row[2] != "0":
+        #         writer.writerow(row)
+        pass
+                
