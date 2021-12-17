@@ -25,13 +25,13 @@ class Account:
             print("Directory '%s' can not be created" % directory)
 
     def check_validity(self, driver):
-        try:
             driver.get(self.link) 
             time.sleep(5)
-            variable = driver.find_element_by_css_selector("h2._7UhW9")
-            return False
-        except:
-            return True
+            variable = driver.find_element_by_tag_name("h2")
+            if variable.text == "Sorry, this page isn't available.":
+                return False
+            else:
+                return True
 
     def add_name_to_file(self, filename):
         # with open(filename, 'rb') as inp, open('first_edit.csv', 'wb') as out:
