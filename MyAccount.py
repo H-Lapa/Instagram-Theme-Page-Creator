@@ -24,7 +24,7 @@ class Myaccount:
         user.send_keys(self.username)
         pwb.clear()
         pwb.send_keys(self.password)
-        submit = driver.find_element_by_xpath("/html/body/div[1]/div/div/section/main/article/div[2]/div[1]/div/form/div/div[3]/button")
+        submit = driver.find_element_by_class_name("L3NKy")
         time.sleep(2)
         submit.send_keys(Keys.RETURN)
         time.sleep(3)

@@ -37,7 +37,7 @@ class Simulation:
 
         list = self.get_usernames()
         driver = webdriver.Firefox(executable_path=r'C:\Users\tuxo9\Downloads\geckodriver\geckodriver.exe')
-        acc = Myaccount("username", "Password")
+        acc = Myaccount("sou.ohugo", "Paracetamol12")
         acc.login(driver)
         aarray = self.create_account_array(list, driver)
         
@@ -80,19 +80,26 @@ class Simulation:
                 account_array.append(user)
             else:
                 print("False")
-                lines = list()
-                with open('Usernames.csv', 'r') as readFile:
-                    reader = csv.reader(readFile)
-                    for row in reader:
-                        lines.append(row)
-                        for field in row:
-                            if field == usernames[x][0]:
-                                lines.remove(row)
-                with open('Usernames.csv', 'w') as writeFile:
-                    writer = csv.writer(writeFile)
-                    writer.writerows(lines)
+                self.remove_txt(usernames[x][0])
+
+                
                 
         return account_array
+
+    def remove_txt(self, txt):
+        #removes line from txt file
+        lines = list()
+        with open('Usernames.csv', 'r') as readFile:
+            reader = csv.reader(readFile)
+            for row in reader:
+                lines.append(row)
+                for field in row:
+                    if field == txt:
+                        lines.remove(row)
+        with open('Usernames.csv', 'w') as writeFile:
+            writer = csv.writer(writeFile)
+            writer.writerows(lines)
+
 
 
 

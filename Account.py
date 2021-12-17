@@ -27,8 +27,8 @@ class Account:
     def check_validity(self, driver):
         try:
             driver.get(self.link) 
-            variable = driver.find_element_by_xpath("/html/body/div[1]/div/div/section/main/div/div/h2")
-            time.sleep(10)
+            time.sleep(5)
+            variable = driver.find_element_by_css_selector("h2._7UhW9")
             return False
         except:
             return True
