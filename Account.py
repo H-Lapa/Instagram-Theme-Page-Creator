@@ -33,11 +33,24 @@ class Account:
             else:
                 return True
 
-    def add_name_to_file(self, filename):
-        # with open(filename, 'rb') as inp, open('first_edit.csv', 'wb') as out:
-        # writer = csv.writer(out)
-        # for row in csv.reader(inp):
-        #     if row[2] != "0":
-        #         writer.writerow(row)
-        pass
+    def add_name_to_file(self, filename, csvname):
+        path = filename + '/'+ csvname +'.csv'
+        with open(path,'a') as fd:
+            fd.write(self.username)
+
+    def remove(self):
+        #removes line from txt file
+        lines = list()
+        with open('Usernames.csv', 'r') as readFile:
+            reader = csv.reader(readFile)
+            for row in reader:
+                lines.append(row)
+                for field in row:
+                    if field == self.username:
+                        lines.remove(row)
+        #writes back to the file without txt row
+        with open('Usernames.csv', 'w') as writeFile:
+            writer = csv.writer(writeFile)
+            writer.writerows(lines)
+
                 
