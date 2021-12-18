@@ -23,9 +23,10 @@ from Menu import Menu
 
 class Simulation:
     def __init__(self):
-        """Run Insta Account Simulation"""
-        self.SimTitle = datetime.datetime.now().strftime("%d-%b-%Y-%H%M")
-        pass
+        """Run Insta Account Simulation instance"""
+        self.datetime = datetime.datetime.now()
+        self.SimTitle = self.datetime.strftime("%d-%b-%Y-%H%M")
+        self.account_array = []
 
     def run (self):
         #check the validity
@@ -34,11 +35,33 @@ class Simulation:
         #get names from csv
         #make them into accounts 
         #append those account into an array 
-        list = self.get_usernames()
-        driver = webdriver.Firefox(executable_path=r'C:\Users\tuxo9\Downloads\geckodriver\geckodriver.exe')
-        acc = Myaccount("sou.ohugo", "Paracetamol12")
-        acc.login(driver)
-        aarray = self.create_account_array(list, driver)
+
+
+        # list = self.get_usernames()
+        # driver = webdriver.Firefox(executable_path=r'C:\Users\tuxo9\Downloads\geckodriver\geckodriver.exe')
+        # acc = Myaccount("sou.ohugo", "Paracetamol12")
+        # acc.login(driver)
+        # self.account_array = self.create_account_array(list, driver)
+        x = Account("souohugo")
+        y = Account("Jiimy")
+        z = Account("bot_goose")
+        self.account_array = [x, y, z]
+        self.set_intial_dates()
+
+        for account in self.account_array:
+            print(account.latest_post_date)
+
+        #once account array is made
+        #set the most recent post date, to todays date for all acounts
+        #so that no posts from the when the simulation starts is posted
+
+        #loop for every hour
+        #check for new posts
+        #each account should add posts to themselves
+        #posts should be downloaded
+        #then posted in order
+        #then update the latestest post date attribute for accounts, so that later we dont get a repeated post
+
         
         
 
@@ -70,6 +93,7 @@ class Simulation:
             os.makedirs(path, exist_ok = True)
 
     def create_account_array(self, usernames, driver):
+        """Returns array with valid users"""
         account_array = []
         for x in range(len(account_array)):
             user = Account(usernames[x][0])
@@ -83,6 +107,12 @@ class Simulation:
                 user.remove()
 
         return account_array
+
+    
+    def set_intial_dates(self):
+        for account in self.account_array:
+            account.set_date(self.datetime)
+        return
 
 
 

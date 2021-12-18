@@ -8,6 +8,7 @@ class Account:
         self.username = username
         self.link = "https://www.instagram.com/" + username + "/"
         self.posts_array = []
+        self.latest_post_date = ''
 
     def get_posts (self):
         return self.posts_array
@@ -52,5 +53,10 @@ class Account:
         with open('Usernames.csv', 'w') as writeFile:
             writer = csv.writer(writeFile)
             writer.writerows(lines)
+
+
+    def set_date(self, date):
+        self.latest_post_date = date
+        return
 
                 
