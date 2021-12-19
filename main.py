@@ -42,14 +42,7 @@ class Simulation:
         # acc = Myaccount("sou.ohugo", "Paracetamol12")
         # acc.login(driver)
         # self.account_array = self.create_account_array(list, driver)
-        x = Account("souohugo")
-        y = Account("Jiimy")
-        z = Account("bot_goose")
-        self.account_array = [x, y, z]
         self.set_intial_dates()
-
-        for account in self.account_array:
-            print(account.latest_post_date)
 
         #once account array is made
         #set the most recent post date, to todays date for all acounts
