@@ -46,11 +46,26 @@ class Simulation:
 
         driver.get("https://www.instagram.com/bot_goose/")
         time.sleep(5)
-
+        end = False
         #loop through elements in first row
-        for element_in_array in range(1, 4):
-            var = driver.find_element_by_xpath(f"/html/body/div[1]/section/main/div/div[2]/article/div[1]/div/div[1]/div[ {element_in_array} ]/a/div/div[1]/img").get_attribute("src")
-            print(var)
+        while (end):
+            row = 1
+            path_part_1 = f"/html/body/div[1]/section/main/div/div[2]/article/div[1]/div/div[{row}]"
+
+            try:
+                for element_in_array in range(1, 4):
+                    path = path_part_1 + f"/div[ {element_in_array} ]/a/div/div[1]/img"
+                    var = driver.find_element_by_xpath(path).get_attribute("src")
+                    print(var)
+                    #fine image date 
+                    #compare the date
+                    #if date is before or the same as latest date
+                    #set end to true
+                row += 1
+            except:
+                #scroll down element not found
+
+
 
 
 
