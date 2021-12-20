@@ -38,11 +38,22 @@ class Simulation:
 
 
         # list = self.get_usernames()
-        # driver = webdriver.Firefox(executable_path=r'C:\Users\tuxo9\Downloads\geckodriver\geckodriver.exe')
-        # acc = Myaccount("sou.ohugo", "Paracetamol12")
-        # acc.login(driver)
+        driver = webdriver.Firefox(executable_path=r'C:\Users\tuxo9\Downloads\geckodriver\geckodriver.exe')
+        acc = Myaccount("sou.ohugo", "Paracetamol12")
+        acc.login(driver)
         # self.account_array = self.create_account_array(list, driver)
-        self.set_intial_dates()
+        #self.set_intial_dates()
+
+        driver.get("https://www.instagram.com/bot_goose/")
+        time.sleep(5)
+
+        #loop through elements in first row
+        for element_in_array in range(1, 4):
+            var = driver.find_element_by_xpath(f"/html/body/div[1]/section/main/div/div[2]/article/div[1]/div/div[1]/div[ {element_in_array} ]/a/div/div[1]/img").get_attribute("src")
+            print(var)
+
+
+
 
         #once account array is made
         #set the most recent post date, to todays date for all acounts

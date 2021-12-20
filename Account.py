@@ -71,6 +71,8 @@ class Account:
         #append posts which are before to the latest date post
         #once all have been added to the array
         #set the latest date post to the date of the post in 0 index
+        driver.get(self.link)
+        
                 
 
 

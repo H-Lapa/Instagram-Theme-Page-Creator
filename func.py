@@ -52,7 +52,3 @@ def append_accounts(new_data, filename='Accounts.json'):
         file.seek(0)
         # convert back to json.
         json.dump(file_data, file, indent = 4)
-
-
-new = {"Username": "sou.ohugo", "LDP": 'null', "LQP": 'null'}
-append_accounts(new)
