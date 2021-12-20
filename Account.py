@@ -59,4 +59,18 @@ class Account:
         self.latest_post_date = date
         return
 
+    def fetch_posts(self, driver):
+        #go through the posts until 
+        #one has a date before or equal to the date time of latest date post
+
+        #from the post extract:
+        #date
+        #link
+        #the caption
+
+        #append posts which are before to the latest date post
+        #once all have been added to the array
+        #set the latest date post to the date of the post in 0 index
                 
+
+
