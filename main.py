@@ -48,8 +48,8 @@ class Simulation:
         time.sleep(5)
         end = False
         #loop through elements in first row
+        row = 1
         while (end):
-            row = 1
             path_part_1 = f"/html/body/div[1]/section/main/div/div[2]/article/div[1]/div/div[{row}]"
 
             try:
@@ -57,14 +57,32 @@ class Simulation:
                     path = path_part_1 + f"/div[ {element_in_array} ]/a/div/div[1]/img"
                     var = driver.find_element_by_xpath(path).get_attribute("src")
                     print(var)
-                    #fine image date 
+                    path.send_keys(Keys.RETURN)
+                    time.sleep(2)
+                    variabletime = driver.find_element_by_xpath("/html/body/div[7]/div[2]/div/article/div/div[2]/div/div/div[2]/div[2]/a/time").get_attribute("datetime")
+                    print(variabletime)
+                    #find image date 
                     #compare the date
                     #if date is before or the same as latest date
                     #set end to true
                 row += 1
             except:
                 #scroll down element not found
-
+                pass
+        
+        path_part_1 = f"/html/body/div[1]/section/main/div/div[2]/article/div[1]/div/div[{row}]"
+        for element_in_array in range(1, 4):
+                path = path_part_1 + f"/div[ {element_in_array} ]/a/div/div[1]/img"
+                var = driver.find_element_by_xpath(path)
+                print(var.get_attribute("src"))
+                new = driver.find_element_by_xpath(f"/html/body/div[1]/section/main/div/div[2]/article/div[1]/div/div[1]/div[{element_in_array}]/a")
+                new.send_keys(Keys.RETURN)
+                exitbutton = driver.find_element_by_css_selector(".BI4qX > button:nth-child(1)")
+                time.sleep(3)
+                variabletime = driver.find_element_by_css_selector("._1o9PC").get_attribute("datetime")
+                exitbutton.send_keys(Keys.RETURN)
+                time.sleep(2)
+                print(variabletime)
 
 
 
