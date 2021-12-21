@@ -75,13 +75,20 @@ class Simulation:
                 path = path_part_1 + f"/div[ {element_in_array} ]/a/div/div[1]/img"
                 var = driver.find_element_by_xpath(path)
                 print(var.get_attribute("src"))
+
+                #new is the element to be clicked to open the image
                 new = driver.find_element_by_xpath(f"/html/body/div[1]/section/main/div/div[2]/article/div[1]/div/div[1]/div[{element_in_array}]/a")
                 new.send_keys(Keys.RETURN)
+
+                #finds the exit button 
                 exitbutton = driver.find_element_by_css_selector(".BI4qX > button:nth-child(1)")
                 time.sleep(3)
+
+                #gets the datetime from the element to late be converted to datetime object
                 variabletime = driver.find_element_by_css_selector("._1o9PC").get_attribute("datetime")
                 exitbutton.send_keys(Keys.RETURN)
                 time.sleep(2)
+                #prints datetime to know if ive got it
                 print(variabletime)
 
 
