@@ -94,10 +94,10 @@ class Simulation:
                 #turns the date string into a datetime object
                 variabletime = datetime.strptime(variabletime, "%Y-%m-%dT%H:%M:%f.000z")
 
-                if variabletime > self.datetime:
-                    print("bigger")
-                else:
-                    print("smaller")
+                if self.datetime == variabletime:
+                    #end the loop at this position
+                    #increment to last value of loop to end it?
+                    pass
 
 
 
