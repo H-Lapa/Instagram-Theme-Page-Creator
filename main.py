@@ -4,6 +4,7 @@ from selenium.webdriver.common.keys import Keys
 #time related imports
 import time
 import datetime
+from datetime import datetime
 #math import
 import random
 #file control import
@@ -24,7 +25,7 @@ from Menu import Menu
 class Simulation:
     def __init__(self):
         """Run Insta Account Simulation instance"""
-        self.datetime = datetime.datetime.now()
+        self.datetime = datetime.now()
         self.SimTitle = self.datetime.strftime("%d-%b-%Y-%H%M")
         self.account_array = []
 
@@ -36,7 +37,9 @@ class Simulation:
         #make them into accounts 
         #append those account into an array 
 
-
+        #datetime conversion 
+        datetime_object = datetime.strptime('2018-02-14T23:48:25.000Z', '%Y-%m-%dT%H:%M:%f.000z')
+        print(datetime_object)
         # list = self.get_usernames()
         driver = webdriver.Firefox(executable_path=r'C:\Users\tuxo9\Downloads\geckodriver\geckodriver.exe')
         acc = Myaccount("sou.ohugo", "Paracetamol12")
@@ -69,7 +72,10 @@ class Simulation:
             except:
                 #scroll down element not found
                 pass
+
         
+        print(datetime_object)
+        print("hello")
         path_part_1 = f"/html/body/div[1]/section/main/div/div[2]/article/div[1]/div/div[{row}]"
         for element_in_array in range(1, 4):
                 path = path_part_1 + f"/div[ {element_in_array} ]/a/div/div[1]/img"
@@ -77,7 +83,7 @@ class Simulation:
                 print(var.get_attribute("src"))
 
                 #new is the element to be clicked to open the image
-                new = driver.find_element_by_xpath(f"/html/body/div[1]/section/main/div/div[2]/article/div[1]/div/div[1]/div[{element_in_array}]/a")
+                new = driver.find_element_by_xpath( path_part_1 + f"/div[{element_in_array}]/a")
                 new.send_keys(Keys.RETURN)
 
                 #finds the exit button 
@@ -90,6 +96,11 @@ class Simulation:
                 time.sleep(2)
                 #prints datetime to know if ive got it
                 print(variabletime)
+
+                if variabletime > self.datetime:
+                    print("bigger")
+                else:
+                    print("smaller")
 
 
 
