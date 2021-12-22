@@ -37,9 +37,7 @@ class Simulation:
         #make them into accounts 
         #append those account into an array 
 
-        #datetime conversion 
-        datetime_object = datetime.strptime('2018-02-14T23:48:25.000Z', '%Y-%m-%dT%H:%M:%f.000z')
-        print(datetime_object)
+
         # list = self.get_usernames()
         driver = webdriver.Firefox(executable_path=r'C:\Users\tuxo9\Downloads\geckodriver\geckodriver.exe')
         acc = Myaccount("sou.ohugo", "Paracetamol12")
@@ -73,9 +71,6 @@ class Simulation:
                 #scroll down element not found
                 pass
 
-        
-        print(datetime_object)
-        print("hello")
         path_part_1 = f"/html/body/div[1]/section/main/div/div[2]/article/div[1]/div/div[{row}]"
         for element_in_array in range(1, 4):
                 path = path_part_1 + f"/div[ {element_in_array} ]/a/div/div[1]/img"
@@ -96,6 +91,8 @@ class Simulation:
                 time.sleep(2)
                 #prints datetime to know if ive got it
                 print(variabletime)
+                #turns the date string into a datetime object
+                variabletime = datetime.strptime(variabletime, "%Y-%m-%dT%H:%M:%f.000z")
 
                 if variabletime > self.datetime:
                     print("bigger")
