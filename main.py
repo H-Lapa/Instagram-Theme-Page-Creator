@@ -51,56 +51,43 @@ class Simulation:
         #loop through elements in first row
         row = 1
         while (end):
-            path_part_1 = f"/html/body/div[1]/section/main/div/div[2]/article/div[1]/div/div[{row}]"
+            intial_path = f"/html/body/div[1]/section/main/div/div[2]/article/div[1]/div/div[{row}]"
 
             try:
                 for element_in_array in range(1, 4):
-                    path = path_part_1 + f"/div[ {element_in_array} ]/a/div/div[1]/img"
-                    var = driver.find_element_by_xpath(path).get_attribute("src")
-                    print(var)
-                    path.send_keys(Keys.RETURN)
+                    #gets the image url, which can be used to download later
+                    path = intial_path + f"/div[ {element_in_array} ]/a/div/div[1]/img"
+                    var = driver.find_element_by_xpath(path)
+                    print(var.get_attribute("src"))
+
+                    #Element to be clicked to open the image to full width
+                    image_button = driver.find_element_by_xpath( intial_path + f"/div[{element_in_array}]/a")
+                    image_button.send_keys(Keys.RETURN)
+
+                    #finds the exit button 
+                    exitbutton = driver.find_element_by_css_selector(".BI4qX > button:nth-child(1)")
+                    time.sleep(3)
+
+                    #gets the datetime from the element to late be converted to datetime object
+                    variabletime = driver.find_element_by_css_selector("._1o9PC").get_attribute("datetime")
+                    exitbutton.send_keys(Keys.RETURN)
                     time.sleep(2)
-                    variabletime = driver.find_element_by_xpath("/html/body/div[7]/div[2]/div/article/div/div[2]/div/div/div[2]/div[2]/a/time").get_attribute("datetime")
+                    #prints datetime to know if ive got it
                     print(variabletime)
-                    #find image date 
-                    #compare the date
-                    #if date is before or the same as latest date
-                    #set end to true
-                row += 1
+                    #turns the date string into a datetime object
+                    variabletime = datetime.strptime(variabletime, "%Y-%m-%dT%H:%M:%f.000z")
+
+                    if self.datetime == variabletime:
+                        #end the for loop at this position
+                        #increment to last value of loop to end it?
+
+                        #also end the while loop setting end to true
+                        pass
             except:
                 #scroll down element not found
                 pass
 
-        path_part_1 = f"/html/body/div[1]/section/main/div/div[2]/article/div[1]/div/div[{row}]"
-        for element_in_array in range(1, 4):
-                path = path_part_1 + f"/div[ {element_in_array} ]/a/div/div[1]/img"
-                var = driver.find_element_by_xpath(path)
-                print(var.get_attribute("src"))
-
-                #new is the element to be clicked to open the image
-                new = driver.find_element_by_xpath( path_part_1 + f"/div[{element_in_array}]/a")
-                new.send_keys(Keys.RETURN)
-
-                #finds the exit button 
-                exitbutton = driver.find_element_by_css_selector(".BI4qX > button:nth-child(1)")
-                time.sleep(3)
-
-                #gets the datetime from the element to late be converted to datetime object
-                variabletime = driver.find_element_by_css_selector("._1o9PC").get_attribute("datetime")
-                exitbutton.send_keys(Keys.RETURN)
-                time.sleep(2)
-                #prints datetime to know if ive got it
-                print(variabletime)
-                #turns the date string into a datetime object
-                variabletime = datetime.strptime(variabletime, "%Y-%m-%dT%H:%M:%f.000z")
-
-                if self.datetime == variabletime:
-                    #end the loop at this position
-                    #increment to last value of loop to end it?
-                    pass
-
-
-
+            row += 1
 
 
         #once account array is made

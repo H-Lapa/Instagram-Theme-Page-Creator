@@ -1057,3 +1057,6 @@ console.warn: TopSitesFeed: Failed to fetch data from Contile server: NetworkErr
 console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\tuxo9\\AppData\\Local\\Temp\\rust_mozprofilevXSsxV\\search.json.mozlz4", (void 0)))
 1640195568897	Marionette	INFO	Listening on port 55468
 1640195569118	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.log: WebExtensions: reset-default-search: starting.
+console.log: WebExtensions: reset-default-search: No addons in our list are installed.
+1640196123684	Marionette	INFO	Stopped listening on port 55468
