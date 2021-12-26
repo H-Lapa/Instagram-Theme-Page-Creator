@@ -44,8 +44,9 @@ class Simulation:
         acc.login(driver)
         # self.account_array = self.create_account_array(list, driver)
         #self.set_intial_dates()
-
-
+        testaccount = Account("bot_goose")
+        testaccount.latest_post_date = datetime.strptime("2017-01-21T17:13:45.000Z", "%Y-%m-%dT%H:%M:%f.000z")
+        testaccount.fetch_posts(driver)
 
         #once account array is made
         #set the most recent post date, to todays date for all acounts

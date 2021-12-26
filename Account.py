@@ -2,6 +2,9 @@ import requests
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import time
+from datetime import datetime
+from selenium.common.exceptions import NoSuchElementException
+from Posts import Post
 
 class Account:
     def __init__(self, username):
@@ -63,18 +66,19 @@ class Account:
         time.sleep(5)
         end = False
         row = 1
-        while (end):
+        array = []
+        while (end == False):
             intial_path = f"/html/body/div[1]/section/main/div/div[2]/article/div[1]/div/div[{row}]"
 
             try:
-                for element_in_array in range(1, 4):
+                for element_in_row in range(1, 4):
                     #gets the image url, which can be used to download later
-                    path = intial_path + f"/div[ {element_in_array} ]/a/div/div[1]/img"
-                    var = driver.find_element_by_xpath(path)
-                    print(var.get_attribute("src"))
+                    path = intial_path + f"/div[{element_in_row}]/a/div/div[1]/img"
+                    var = driver.find_element_by_xpath(path).get_attribute("src")
+                    print(var)
 
                     #Element to be clicked to open the image to full width
-                    image_button = driver.find_element_by_xpath( intial_path + f"/div[{element_in_array}]/a")
+                    image_button = driver.find_element_by_xpath(intial_path + f"/div[{element_in_row}]/a")
                     image_button.send_keys(Keys.RETURN)
 
                     #finds the exit button 
@@ -89,21 +93,27 @@ class Account:
                     print(variabletime)
                     #turns the date string into a datetime object
                     variabletime = datetime.strptime(variabletime, "%Y-%m-%dT%H:%M:%f.000z")
+                    
 
-                    if self.datetime == variabletime:
+                    if self.latest_post_date == variabletime:
                         #end the for loop at this position
                         #increment to last value of loop to end it?
-                        element_in_array = 4
                         end = True
+                        break
                         #also end the while loop setting end to true
                     else:
-                        append(Post(var.get_attribute("src"), variabletime))
-                        row += 1
-            except:
+                        array.append(Post(var, variabletime))
+                        
+    
+            except NoSuchElementException:
                 #scroll down element not found
-                pass
+                driver.execute_script("window.scrollTo(0, 1080)") 
 
-        set_date(self.posts_array[0].date)
+            row += 1
+
+                
+        self.set_date(self.array[0].date)
+        return array
 
         #go through the posts until 
         #one has a date before or equal to the date time of latest date post
