@@ -27,7 +27,7 @@ class Myaccount:
         submit = driver.find_element_by_class_name("L3NKy")
         time.sleep(2)
         submit.send_keys(Keys.RETURN)
-        time.sleep(3)
+        time.sleep(5)
 
         #check if details worked
 

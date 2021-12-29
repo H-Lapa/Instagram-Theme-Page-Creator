@@ -112,8 +112,9 @@ class Account:
             row += 1
 
                 
-        self.set_date(self.array[0].date)
-        return array
+        self.set_date(array[0].date)
+        self.posts_array = array 
+        return
 
         #go through the posts until 
         #one has a date before or equal to the date time of latest date post
