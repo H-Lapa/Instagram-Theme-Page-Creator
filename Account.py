@@ -95,7 +95,7 @@ class Account:
                     variabletime = datetime.strptime(variabletime, "%Y-%m-%dT%H:%M:%f.000z")
                     
 
-                    if self.latest_post_date == variabletime:
+                    if self.latest_post_date >= variabletime:
                         #end the for loop at this position
                         #increment to last value of loop to end it?
                         end = True

@@ -28,6 +28,7 @@ class Simulation:
         self.datetime = datetime.now()
         self.SimTitle = self.datetime.strftime("%d-%b-%Y-%H%M")
         self.account_array = []
+        self.post_queue = []
 
     def run (self):
         #check the validity
@@ -43,8 +44,12 @@ class Simulation:
         self.account_array = self.create_account_array(list, driver)
         self.set_intial_dates()
 
-        for account in self.account_array:
-            account.fetch_posts(driver)
+        while True:
+
+            for account in self.account_array:
+                account.fetch_posts(driver)
+
+            self.post_queue_generator()
 
         #loop for every hour
         #check for new posts
@@ -54,7 +59,19 @@ class Simulation:
         #then update the latestest post date attribute for accounts, so that later we dont get a repeated post
 
         
+    def post_queue_generator (self):
+        #maximum load 6 posts/hr
         
+        #load in posts from the end of the post_arrays
+        #make sure they are the most recent posts
+        while len(self.post_queue) != 6:
+            smallest_time = self.account_array[0].posts_array[len(posts_array)-1].date
+            for x in range(1, len(self.account_array)):
+                new_time = self.account_array[i].posts_array[len(posts_array)-1].date
+                if smallest_time > new_time:
+                    smallest_time = new_time
+
+        pass
 
     def get_usernames (self):
         """ Produces arary with Usernames from CSV"""
