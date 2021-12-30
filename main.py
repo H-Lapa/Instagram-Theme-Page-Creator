@@ -65,13 +65,15 @@ class Simulation:
         #load in posts from the end of the post_arrays
         #make sure they are the most recent posts
         while len(self.post_queue) != 6:
-            smallest_time = self.account_array[0].posts_array[len(posts_array)-1].date
+            oldest_post = self.account_array[0].posts_array[len(posts_array)-1]
+            smallest_time = oldest_post.date
             for x in range(1, len(self.account_array)):
-                new_time = self.account_array[i].posts_array[len(posts_array)-1].date
-                if smallest_time > new_time:
-                    smallest_time = new_time
+                new_post = self.account_array[i].posts_array[len(posts_array)-1]
+                if smallest_time < new_post.date:
+                    smallest_time = new_post.date
+                    oldest_post = new_post
 
-        pass
+            self.post_queue.append(oldest_post)
 
     def get_usernames (self):
         """ Produces arary with Usernames from CSV"""
