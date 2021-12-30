@@ -38,19 +38,13 @@ class Simulation:
         #append those account into an array 
 
 
-        # list = self.get_usernames()
+        list = self.get_usernames()
         driver = webdriver.Firefox(executable_path=r'C:\Users\tuxo9\Downloads\geckodriver\geckodriver.exe')
-        acc = Myaccount("sou.ohugo", "Paracetamol12")
-        acc.login(driver)
-        # self.account_array = self.create_account_array(list, driver)
-        #self.set_intial_dates()
-        testaccount = Account("bot_goose")
-        testaccount.latest_post_date = datetime.strptime("2017-01-21T17:13:45.000Z", "%Y-%m-%dT%H:%M:%f.000z")
-        testaccount.fetch_posts(driver)
+        self.account_array = self.create_account_array(list, driver)
+        self.set_intial_dates()
 
-        #once account array is made
-        #set the most recent post date, to todays date for all acounts
-        #so that no posts from the when the simulation starts is posted
+        for account in self.account_array:
+            account.fetch_posts(driver)
 
         #loop for every hour
         #check for new posts
