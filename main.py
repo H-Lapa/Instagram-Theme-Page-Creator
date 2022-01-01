@@ -59,20 +59,24 @@ class Simulation:
         #then update the latestest post date attribute for accounts, so that later we dont get a repeated post
 
         
-    def post_queue_generator (self):
-        #maximum load 6 posts/hr
-        
-        #load in posts from the end of the post_arrays
-        #make sure they are the most recent posts
-        while len(self.post_queue) != 6:
+    def post_queue_appender (self):
+
+        #finding out how many posts there are
+        total_posts = 0
+        for x in self.account_array:
+            total_posts += len(x.posts_array)
+            
+        #loops until all posts are added to the post_queue
+        while len(self.post_queue) != total_posts:
             oldest_post = self.account_array[0].posts_array[len(posts_array)-1]
             smallest_time = oldest_post.date
-            for x in range(1, len(self.account_array)):
+            for i in range(1, len(self.account_array)):
                 new_post = self.account_array[i].posts_array[len(posts_array)-1]
-                if smallest_time < new_post.date:
+                if smallest_time > new_post.date:
                     smallest_time = new_post.date
                     oldest_post = new_post
 
+            oldest_post.pop()
             self.post_queue.append(oldest_post)
 
     def get_usernames (self):
@@ -123,8 +127,6 @@ class Simulation:
         for account in self.account_array:
             account.set_date(self.datetime)
         return
-
-
 
 
 def Main():
