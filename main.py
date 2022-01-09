@@ -123,7 +123,6 @@ class Simulation:
 
         return account_array
 
-    
     def set_intial_dates(self):
         for account in self.account_array:
             account.set_date(self.datetime)
