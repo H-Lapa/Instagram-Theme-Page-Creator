@@ -17,3 +17,13 @@ class Post:
 
         #submit the file location
         driver.find_element_by_id("submit").click()
+
+        #click the nect button
+        next = driver.find_element_by_xpath("/html/body/div[7]/div[2]/div/div/div/div[1]/div/div/div[2]/div/button")
+        next.send_keys(Keys.RETURN)
+
+        # click the next button again
+        next.send_keys(Keys.RETURN)
+
+        # next button has become share but is in same location
+        next.send_keys(Keys.RETURN) # now the post has been shared

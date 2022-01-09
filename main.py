@@ -37,11 +37,12 @@ class Simulation:
         #get names from csv
         #make them into accounts 
         #append those account into an array 
+        driver = webdriver.Firefox(executable_path=r'C:\Users\tuxo9\Downloads\geckodriver\geckodriver.exe')
 
         menu = Menu()
-        list = self.get_usernames()
-        driver = webdriver.Firefox(executable_path=r'C:\Users\tuxo9\Downloads\geckodriver\geckodriver.exe')
-        self.account_array = self.create_account_array(list, driver)
+        arr = self.get_usernames()
+        self.folder_structure(arr)
+        self.account_array = self.create_account_array(arr, driver)
         self.set_intial_dates()
 
         while True:
