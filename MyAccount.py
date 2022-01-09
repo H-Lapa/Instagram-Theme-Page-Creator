@@ -36,13 +36,10 @@ class Myaccount:
         
         #checks if the error element is there and acts on it
         if check == []:
+            menu.logged_in(self.username)
             print("success")
+            return True
         else:
             print("Details are incorrect!")
             driver.close()
-
-    def logout(self):
-        pass
-
-    def uploadPost(self):
-        pass
+            return False

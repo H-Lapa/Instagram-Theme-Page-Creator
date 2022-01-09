@@ -38,7 +38,7 @@ class Simulation:
         #make them into accounts 
         #append those account into an array 
 
-
+        menu = Menu()
         list = self.get_usernames()
         driver = webdriver.Firefox(executable_path=r'C:\Users\tuxo9\Downloads\geckodriver\geckodriver.exe')
         self.account_array = self.create_account_array(list, driver)
