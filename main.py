@@ -59,6 +59,19 @@ class Simulation:
         #then posted in order
         #then update the latestest post date attribute for accounts, so that later we dont get a repeated post
 
+        if self.post_queue > 6:
+            length = 6
+        else:
+            length = self.post_queue
+        
+        #3600 is the second in an hour
+        interval = 3600/length
+        for x in range(length):
+            time.sleep(interval)
+            self.post_queue[self.post_queue.length - 1].upload_post(driver, self.SimTitle)
+            self.post_queue.pop()
+
+
         
     def post_queue_appender (self):
 
